@@ -2,6 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import FirstParagraph from "./components/FirstParagraph";
+import AppRouter from "./router/AppRouter";
 
-ReactDOM.render(<FirstParagraph />, document.getElementById("app"))
+ReactDOM.render(<AppRouter />, document.getElementById("app"))
