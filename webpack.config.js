@@ -3,8 +3,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env, argv) => {
-    console.log("Your value" , argv)
-    return {
+    const config = {
+        mode: argv.mode,
+        devtool: argv.mode === 'development' ? 'inline-source-map' : false,
         entry: './src/App.tsx',
         output: {
             filename: 'bundle.js',
@@ -56,6 +57,23 @@ module.exports = (env, argv) => {
                 template: "./public/index.html",
                 minify: argv.mode === 'production'
             })
-        ]
+        ],
+        performance: {
+            maxEntrypointSize: 512000,
+            maxAssetSize: 512000
+        },
     }
+
+    if (argv.mode === 'development') {
+        config.devServer = {
+            historyApiFallback: true,
+            static: {
+                directory: path.join(__dirname, 'public')
+            },
+            compress: true,
+            hot: true
+        }
+    }
+
+    return config;
 };
