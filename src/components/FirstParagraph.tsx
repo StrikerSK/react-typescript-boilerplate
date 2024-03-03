@@ -1,9 +1,11 @@
 import React from "react"
 
-export default () => {
+const FirstParagraph = () => {
     return (
         <div className="main-div">
             <p>Hey, you did it!</p>
         </div>
     )
 }
+
+export default FirstParagraph
